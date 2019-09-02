@@ -1,13 +1,24 @@
 <!--index.wxml-->
-<view class="container">
+<view class="container contindex">
   <view class="userinfo">
     <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
     <block wx:else>
-      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
-      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+      <!--image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+      <text class="userinfo-nickname">{{userInfo.nickName}}</text-->
+      <view class="font50">欢迎{{userInfo.nickName}}来到大贺金服</view>
+      <view class="divLine marbot50"></view>
+      <view class="">
+        <input placeholder="请输入手机号" bindblur="setmobile" />
+      </view>
+      <view class="divLine marbot50"></view>
+      <view class="">
+        <input placeholder="请输入密码" bindblur="setpass" />
+      </view>
+      <view class="divLine marbot50"></view>
+      <button type="primary" bindtap="sublogin">登录</button>
     </block>
   </view>
-  <view class="usermotto">
+  <!--view class="usermotto">
     <text class="user-motto">{{motto}}</text>
-  </view>
+  </view-->
 </view>
