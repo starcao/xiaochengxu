@@ -6,15 +6,16 @@ Page({
   data: {
     motto: '小程序--旺啊',
     userInfo: {},
+    loginArr: {},
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo')
   },
   //事件处理函数
-  bindViewTap: function() {
+  /*bindViewTap: function() {
     wx.navigateTo({
       url: '../logs/logs'
     })
-  },
+  },*/
   onLoad: function () {
     if (app.globalData.userInfo) {
       this.setData({
@@ -50,5 +51,16 @@ Page({
       userInfo: e.detail.userInfo,
       hasUserInfo: true
     })
+  },
+  sublogin: function () {
+    console.log(this.data)
+    console.log(app.globalData)
+  },
+  setmobile: function(e) {
+    this.setData({['loginArr.mobile']: e.detail.value})
+    app.globalData.mobile = e.detail.value
+  },
+  setpass: function(e) {
+    this.setData({['loginArr.password']: e.detail.value})
   }
 })
