@@ -45,8 +45,20 @@ Page({
     })
   },
   sublogin: function () {
-    console.log(this.data)
-    console.log(app.globalData)
+    wx.request({
+      url: 'test.php',
+      method: 'post',
+      data: {
+        mobile: this.data.loginArr.mobile,
+        password: this.data.loginArr.password
+      },
+      header: {
+        'content-type': 'application/json'
+      },
+      success(res) {
+        console.log(res.data)
+      }
+    })
   },
   setmobile: function(e) {
     this.setData({['loginArr.mobile']: e.detail.value})
