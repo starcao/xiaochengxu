@@ -9,7 +9,27 @@ Page({
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo')
   },
+  // onLaunch: function() {
+  //   wx.getStorage({
+  //     key: 'token',
+  //     success: function (res) {
+  //       app.globalData.token = res.data;
+  //       wx.navigateTo({
+  //         url: '../work/index',
+  //       })
+  //     },
+  //     fail: function () {
+  //       app.globalData.token = ''
+  //     }
+  //   })
+  // },
   onLoad: function () {
+    if(app.globalData.token != '') {      
+      wx.reLaunch({
+        url: '/pages/work/index',
+      })
+    }
+
     if (app.globalData.userInfo) {
       this.setData({
         userInfo: app.globalData.userInfo,
@@ -45,40 +65,46 @@ Page({
     })
   },
   sublogin: function (e) {
-    console.log(e)
-    // if(this.data.loginArr.mobile == null) {
-    //     wx.showModal({
-    //       title: '提示',
-    //       content: '请输入手机号',  
-    //     })
-    //     return false
-    // }
-    // if(this.data.loginArr.password == null) {
-    //     wx.showModal({
-    //       title: '提示',
-    //       content: '请输入密码',
-    //     })
-    //     return false
-    // }
+    if(this.data.loginArr.mobile == null) {
+        wx.showModal({
+          title: '提示',
+          content: '请输入手机号',  
+        })
+        return false
+    }
+    if(this.data.loginArr.password == null) {
+        wx.showModal({
+          title: '提示',
+          content: '请输入密码',
+        })
+        return false
+    }
+
+    var loginArr = this.data.loginArr;
     wx.request({
       url: 'http://wx.zjnuoxin.cn/index.php?r=v1/member/login',
       method: 'POST',
       header: { "Content-Type": "application/x-www-form-urlencoded"},
-      data: { mobile: app.globalData.mobile, password: app.globalData.password},
+      data: { mobile: loginArr.mobile, password: loginArr.password},
       success: function(res) {
-        console.log(res)
+        app.globalData.token = res.data.data.token;
+        app.globalData.nick = res.data.data.nickName;
+        wx.setStorage({
+          key: 'token',
+          data: res.data.data.token
+        })
       }
     })
+
     wx.navigateTo({
       url: '../work/index',
     })
   },
   setmobile: function(e) {
-    this.setData({['loginArr.mobile']: e.detail.value})
-    app.globalData.mobile = e.detail.value
+    this.setData({['loginArr.mobile']: e.detail.value});
+    app.globalData.mobile = e.detail.value;
   },
   setpass: function(e) {
-    this.setData({['loginArr.password']: e.detail.value})
-    app.globalData.password = e.detail.value
+    this.setData({['loginArr.password']: e.detail.value});
   }
 })

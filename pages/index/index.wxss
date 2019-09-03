@@ -27,6 +27,10 @@
  height: 5rpx;
 }
 
+.userInfo {
+  color:lightsalmon;
+}
+
 
 .loginButton{
   width:274px;

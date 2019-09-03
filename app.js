@@ -32,6 +32,17 @@ App({
         }
       }
     })
+
+    var $this = this
+    wx.getStorage({
+      key: 'token',
+      success: function (res) {
+        $this.globalData.token = res.data;
+      },
+      fail: function () {
+        $this.globalData.token = ''
+      }
+    })
   },
   globalData: {
     userInfo: null
