@@ -9,13 +9,22 @@
 		"postcss": true,
 		"minified": true,
 		"newFeature": true,
+		"coverView": true,
 		"autoAudits": false,
-		"coverView": true
+		"checkInvalidKey": true,
+		"checkSiteMap": true,
+		"uploadWithSourceMap": true,
+		"babelSetting": {
+			"ignore": [],
+			"disablePlugins": [],
+			"outputPath": ""
+		},
+		"nodeModules": true
 	},
 	"compileType": "miniprogram",
 	"libVersion": "2.8.1",
 	"appid": "wx0c487bce604d4b2f",
-	"projectname": "starcao",
+	"projectname": "sproce",
 	"debugOptions": {
 		"hidedInDevtools": []
 	},

@@ -27,9 +27,6 @@
  height: 5rpx;
 }
 
-.nameText{
-  color: #FF00FF
-}
 
 .loginButton{
   width:274px;
