@@ -52,9 +52,34 @@ Page({
       hasUserInfo: true
     })
   },
-  sublogin: function () {
-    console.log(this.data)
-    console.log(app.globalData)
+  sublogin: function (e) {
+    console.log(e)
+    // if(this.data.loginArr.mobile == null) {
+    //     wx.showModal({
+    //       title: '提示',
+    //       content: '请输入手机号',  
+    //     })
+    //     return false
+    // }
+    // if(this.data.loginArr.password == null) {
+    //     wx.showModal({
+    //       title: '提示',
+    //       content: '请输入密码',
+    //     })
+    //     return false
+    // }
+    wx.request({
+      url: 'http://wx.zjnuoxin.cn/index.php?r=v1/member/login',
+      method: 'POST',
+      header: { "Content-Type": "application/x-www-form-urlencoded"},
+      data: { mobile: app.globalData.mobile, password: app.globalData.password},
+      success: function(res) {
+        console.log(res)
+      }
+    })
+    wx.navigateTo({
+      url: '../work/index',
+    })
   },
   setmobile: function(e) {
     this.setData({['loginArr.mobile']: e.detail.value})
@@ -62,5 +87,6 @@ Page({
   },
   setpass: function(e) {
     this.setData({['loginArr.password']: e.detail.value})
+    app.globalData.password = e.detail.value
   }
 })

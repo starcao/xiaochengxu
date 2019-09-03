@@ -3,17 +3,17 @@
   <view class="userinfo">
     <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 微信通信... </button>
     <block wx:else>
-      <view class="font50">欢迎"{{userInfo.nickName}}"来到大贺金服</view>
+      <view class="font50">欢迎"<font class="nameText">{{userInfo.nickName}}</font>"来到大贺金服</view>
       <view class="divLine marbot100"></view>
       <view class="">
         <input placeholder="请输入手机号" bindblur="setmobile" />
       </view>
       <view class="divLine marbot50"></view>
       <view class="">
-        <input placeholder="请输入密码" bindblur="setpass" />
+        <input type="password" placeholder="请输入密码" bindblur="setpass" />
       </view>
       <view class="divLine marbot50"></view>
-      <button type="primary" bindtap="sublogin">登录</button>
+      <button type="primary" bindtap="sublogin" class="loginButton">登录</button>
     </block>
   </view>
 </view>
