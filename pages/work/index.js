@@ -6,13 +6,7 @@ Page({
   data: {
     longitude: '',
     latitude: '',
-    markers:{
-      iconPath: "../../image/location.png",
-      longitude: 116.44355,
-      latitude: 39.9219,
-      width: 30,
-      heigth: 20
-    }
+    markers:[]
   },
 
   /**
@@ -57,15 +51,15 @@ Page({
 
   },
   onLoad: function () {
-    var that = this
+    var $this = this;
     wx.getLocation({
       type: 'gcj02',
       success: function (res) {
-        console.log(res)
-        const latitude = res.latitude
-        const longitude = res.longitude
-        that.setData({longitude:longitude, latitude:latitude})
-        console.log(that.data)
+        $this.setData({longitude: res.longitude, latitude: res.latitude});
+        var mark = {longitude: res.longitude, latitude: res.latitude};
+        var marks = $this.data.markers;
+        marks.push(mark);
+        $this.setData({markers: marks})
       },
     })
   }
