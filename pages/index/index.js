@@ -9,20 +9,6 @@ Page({
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo')
   },
-  // onLaunch: function() {
-  //   wx.getStorage({
-  //     key: 'token',
-  //     success: function (res) {
-  //       app.globalData.token = res.data;
-  //       wx.navigateTo({
-  //         url: '../work/index',
-  //       })
-  //     },
-  //     fail: function () {
-  //       app.globalData.token = ''
-  //     }
-  //   })
-  // },
   onLoad: function () {
     if(app.globalData.token != '') {      
       wx.reLaunch({
