@@ -1,0 +1,1 @@
+<map logitude="{{longitude}}" latitude="{{latitude}}" markers="{{markers}}" class="mapLocation"></map>

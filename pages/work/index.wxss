@@ -1,0 +1,4 @@
+/* pages/work/index.wxss */
+.mapLocation {
+  margin-left: 25rpx;
+}
