@@ -1,8 +1,12 @@
 <view class="mar25">信息部：北京职场</view>
 <map logitude="{{longitude}}" latitude="{{latitude}}" markers="{{markers}}" scale="12" class="mapLocation" show-location="true"></map>
 <view class="mar25">{{times.year}}年{{times.month}}月{{times.day}}日 {{times.week}} 10:00-19:00</view>
-<view class="height150"><view class="font60"><font class="textStyle">新的一天从签到开始~</font></view></view>
-<view class="height150"></view>
+<view id="start" class="height150 mark">
+  <view class="signlabel ash"> 新的一天从签到开始 ~~ </view>
+</view>
+<view id="end" class="height150 mark">
+  <view class="signlabel ash"> 每天都要有始有终 ~~ </view>
+</view>
 <view class="mark">
   <view class="circle">
     <view class="signin">
