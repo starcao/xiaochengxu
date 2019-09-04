@@ -62,5 +62,22 @@ Page({
         $this.setData({markers: marks})
       },
     })
+
+    wx.getSystemInfo({
+      success: function (res) {
+        $this.setData({ phonemodel: res.model })
+      }
+    })
+
+    wx.startWifi({
+      success: function (res) {
+        wx.getConnectedWifi({
+          success: function(res) {
+            $this.setData({wifi: res.wifi.SSID});
+            console.log($this.data)
+          }
+        })
+      }
+    })
   }
 })
