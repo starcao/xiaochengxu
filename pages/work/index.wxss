@@ -8,7 +8,7 @@
 }
 
 .height150 {
-  height: 150rpx;
+  height: 220rpx;
 }
 
 .mark {
@@ -29,4 +29,14 @@
 .signin {
   font-size: 40rpx;
   color: #A37037;
+}
+
+.font60 {
+  margin-left: 150rpx;
+  width:500rpx;
+  height:120rpx;
+  background:rgba(246,247,248,1);
+  border-radius:12rpx;
+  text-align: center;
+  line-height:120rpx;
 }
