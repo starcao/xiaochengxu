@@ -1,6 +1,6 @@
 // pages/work/index.js
 var util = require('../../utils/util.js');
-
+const app = getApp();
 Page({
   /**
    * 页面的初始数据
@@ -9,7 +9,8 @@ Page({
     longitude: '',
     latitude: '',
     markers:[],
-    times: {}
+    times: {},
+    wkpInfo: {}
   },
 
   /**
@@ -91,6 +92,17 @@ Page({
             })
           }
         })
+      }
+    })
+    
+    wx.request({
+      url: 'http://wx.zjnuoxin.cn/index.php?r=v1/work/sign',
+      method: 'POST',
+      header: { "Content-Type": "application/x-www-form-urlencoded" },
+      data: {'token': app.globalData.token},
+      success: function(res) {
+        $this.setData({wkpInfo: res.data.data.workplaceArray[0]})
+        console.log($this.data.wkpInfo)
       }
     })
   }

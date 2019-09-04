@@ -1,6 +1,6 @@
-<view class="mar25">信息部：北京职场</view>
+<view class="mar25 marText">{{wkpInfo.wkpName}}：{{wkpInfo.wkpAddress}}</view>
 <map logitude="{{longitude}}" latitude="{{latitude}}" markers="{{markers}}" scale="12" class="mapLocation" show-location="true"></map>
-<view class="mar25">{{times.year}}年{{times.month}}月{{times.day}}日 {{times.week}} 10:00-19:00</view>
+<view class="mar25">{{wkpInfo.day}} {{wkpInfo.start}}-{{wkpInfo.end}}</view>
 <view id="start" class="height150 mark">
   <view class="signlabel ash"> 新的一天从签到开始 ~~ </view>
 </view>
