@@ -2,13 +2,27 @@
 <map logitude="{{longitude}}" latitude="{{latitude}}" markers="{{markers}}" scale="12" class="mapLocation" show-location="true"></map>
 <view class="mar25">{{wkpInfo.day}} {{wkpInfo.start}}-{{wkpInfo.end}}</view>
 <view id="start" class="height150 mark">
-  <view class="signlabel ash"> 新的一天从签到开始 ~~ </view>
+  <template name="startnull">
+    <view class="signlabel ash"> {{text}} </view>
+  </template>
+  <template wx:if="{{startnull}}" is="startnull" data="{{text: '新的一天从签到开始 ~~'}}" />
+  <template name="startfill">
+    <view class="signlabel orange"> {{time}}   {{addr}} </view>
+  </template>
+  <template wx:if="{{startnull == 0}}" is="startfill" data="{{...startobj}}"></template>
 </view>
 <view id="end" class="height150 mark">
-  <view class="signlabel ash"> 每天都要有始有终 ~~ </view>
+  <template name="endnull">
+    <view class="signlabel ash"> {{text}} </view>
+  </template>
+  <template wx:if="{{endnull}}" is="startnull" data="{{text: '每天都要有始有终 ~~'}}" />
+  <template name="endfill">
+    <view class="signlabel orange"> {{time}}   {{addr}} </view>
+  </template>
+  <template wx:if="{{endnull == 0}}" is="endfill" data="{{...endobj}}"></template>
 </view>
 <view class="mark2">
-  <view class="circle">
+  <view class="circle" bindtap="funview">
     <view class="signin">
       <view class="mark">上班签到</view>
       <view class="mark">{{times.hour}}:{{times.minute}}</view>

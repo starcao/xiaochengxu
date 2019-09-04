@@ -10,7 +10,11 @@ Page({
     latitude: '',
     markers:[],
     times: {},
-    wkpInfo: {}
+    wkpInfo: {},
+    startnull: 1,
+    endnull: 1,
+    startobj: {},
+    endobj: {}
   },
 
   /**
@@ -101,6 +105,12 @@ Page({
       success: function(res) {
         if (res.data.resCode == "0000") {
           $this.setData({wkpInfo: res.data.data.workplaceArray[0]})
+          if (res.data.data.workplaceArray[0].list[0]) {
+            $this.setData({startnull: 0, startobj: {time: res.data.data.workplaceArray[0].list[0].time, addr: res.data.data.workplaceArray[0].list[0].address}})
+          }
+          if (res.data.data.workplaceArray[0].list[1]) {
+            $this.setData({endnull: 0, endobj: {time: res.data.data.workplaceArray[0].list[1].time, addr: res.data.data.workplaceArray[0].list[1].address}})
+          }
         } else {
           wx.showModal({
             title: '提示',
@@ -109,5 +119,10 @@ Page({
         }
       }
     })
+  },
+
+  funview: function() {
+    this.setData({statrnull: 0})
+    console.log(this.data)
   }
 })
