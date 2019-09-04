@@ -1,3 +1,13 @@
 <view class="mar25">信息部：北京职场</view>
 <map logitude="{{longitude}}" latitude="{{latitude}}" markers="{{markers}}" scale="12" class="mapLocation" show-location="true"></map>
 <view class="mar25">{{times.year}}年{{times.month}}月{{times.day}}日 {{times.week}} 10:00-19:00</view>
+<view class="height150"></view>
+<view class="height150"></view>
+<view class="mark">
+  <view class="circle">
+    <view class="signin">
+      <view class="mark">上班签到</view>
+      <view class="mark">{{times.hour}}:{{times.minute}}</view>
+    </view>
+  </view>
+</view>

@@ -26,7 +26,7 @@ function customtime(date, format = true) {
   let daily = date.getDay();
 
   if (format) {
-    return { year: year, month: formatNumber(month), day: formatNumber(day), hour: formatNumber(hour), minute: formatNumber(minute), second: formatNumber(second), week: show_day[daily]};
+    return {year: year, month: formatNumber(month), day: formatNumber(day), hour: formatNumber(hour), minute: formatNumber(minute), second: formatNumber(second), week: show_day[daily]};
   }
   return {year: year, month: month, day: day, hour: hour, minute: minute, second: second, week: show_day[daily]};
 }
