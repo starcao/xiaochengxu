@@ -1,4 +1,12 @@
 /* pages/work/index.wxss */
+.mar25 {
+  margin: 25rpx;
+}
+
 .mapLocation {
   margin-left: 25rpx;
+}
+
+.height150 {
+  height: 150rpx;
 }

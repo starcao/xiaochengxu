@@ -1,4 +1,6 @@
 // pages/work/index.js
+var util = require('../../utils/util.js');
+
 Page({
   /**
    * 页面的初始数据
@@ -6,7 +8,8 @@ Page({
   data: {
     longitude: '',
     latitude: '',
-    markers:[]
+    markers:[],
+    times: {}
   },
 
   /**
@@ -51,6 +54,10 @@ Page({
 
   },
   onLoad: function () {
+    this.setData({
+      times: util.customtime(new Date())
+    })
+
     var $this = this;
     wx.getLocation({
       type: 'gcj02',
@@ -71,10 +78,17 @@ Page({
 
     wx.startWifi({
       success: function (res) {
+        console.log(res)
         wx.getConnectedWifi({
           success: function(res) {
             $this.setData({wifi: res.wifi.SSID});
             console.log($this.data)
+          },
+          fail: function() {
+            wx.showModal({
+              title: '提示',
+              content: '请连接有效的WIFI，并重新启动小程序',
+            })
           }
         })
       }
