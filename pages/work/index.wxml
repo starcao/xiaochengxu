@@ -7,7 +7,7 @@
 <view id="end" class="height150 mark">
   <view class="signlabel ash"> 每天都要有始有终 ~~ </view>
 </view>
-<view class="mark">
+<view class="mark2">
   <view class="circle">
     <view class="signin">
       <view class="mark">上班签到</view>
