@@ -79,11 +79,9 @@ Page({
 
     wx.startWifi({
       success: function (res) {
-        console.log(res)
         wx.getConnectedWifi({
           success: function(res) {
             $this.setData({wifi: res.wifi.SSID});
-            console.log($this.data)
           },
           fail: function() {
             wx.showModal({
@@ -94,15 +92,21 @@ Page({
         })
       }
     })
-    
+
     wx.request({
       url: 'http://wx.zjnuoxin.cn/index.php?r=v1/work/sign',
       method: 'POST',
-      header: { "Content-Type": "application/x-www-form-urlencoded" },
+      header: {"Content-Type": "application/x-www-form-urlencoded"},
       data: {'token': app.globalData.token},
       success: function(res) {
-        $this.setData({wkpInfo: res.data.data.workplaceArray[0]})
-        console.log($this.data.wkpInfo)
+        if (res.data.resCode == "0000") {
+          $this.setData({wkpInfo: res.data.data.workplaceArray[0]})
+        } else {
+          wx.showModal({
+            title: '提示',
+            content: res.data.resMsg
+          })
+        }
       }
     })
   }

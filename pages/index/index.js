@@ -10,7 +10,7 @@ Page({
     canIUse: wx.canIUse('button.open-type.getUserInfo')
   },
   onLoad: function () {
-    if(app.globalData.token != '') {      
+    if (app.globalData.token != '') {
       wx.reLaunch({
         url: '/pages/work/index',
       })
@@ -73,17 +73,25 @@ Page({
       header: { "Content-Type": "application/x-www-form-urlencoded"},
       data: { mobile: loginArr.mobile, password: loginArr.password},
       success: function(res) {
-        app.globalData.token = res.data.data.token;
-        app.globalData.nick = res.data.data.nickName;
-        wx.setStorage({
-          key: 'token',
-          data: res.data.data.token
-        })
+        if (res.data.resCode == "0000") {
+          app.globalData.token = res.data.data.token;
+          app.globalData.nick = res.data.data.nickName;
+          wx.setStorage({
+            key: 'token',
+            data: res.data.data.token,
+            success: function() {
+              wx.navigateTo({
+                url: '../work/index',
+              })
+            }
+          })
+        } else {
+          wx.showModal({
+            title: '提示',
+            content: res.data.resMsg
+          })
+        }
       }
-    })
-
-    wx.navigateTo({
-      url: '../work/index',
     })
   },
   setmobile: function(e) {
