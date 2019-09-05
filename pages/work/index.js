@@ -119,17 +119,16 @@ Page({
           wx.showModal({
             title: '提示',
             content: res.data.resMsg,
+            showCancel: false,
             success: param => {
-              if (param.confirm) {
-                wx.clearStorage({
-                  success: function() {
-                    app.globalData.token = '';
-                    wx.reLaunch({
-                      url: '../index/index',
-                    })
-                  }
-                })
-              }
+              wx.clearStorage({
+                success: function() {
+                  app.globalData.token = '';
+                  wx.reLaunch({
+                    url: '../index/index',
+                  })
+                }
+              })
             }
           })
         }
