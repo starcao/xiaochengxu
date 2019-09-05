@@ -122,7 +122,18 @@ Page({
   },
 
   funview: function() {
-    this.setData({statrnull: 0})
-    console.log(this.data)
+    const that = this;
+    wx.request({
+      url: 'http://wx.zjnuoxin.cn/index.php?r=v1/work/sign-sub',
+      method: 'POST',
+      header: { "Content-Type": "application/x-www-form-urlencoded" },
+      data: {'token': app.globalData.token},
+      success:function(res) {
+        console.log(res)
+        if(res.data.data.resCode == '0000') {
+          that.onLoad()
+        }
+      }
+    })
   }
 })
