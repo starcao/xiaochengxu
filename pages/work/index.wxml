@@ -24,7 +24,7 @@
 <view class="mark2">
   <view class="circle" bindtap="funview">
     <view class="signin">
-      <view class="mark">上班签到</view>
+      <view class="mark">{{signText}}</view>
       <view class="mark">{{times.hour}}:{{times.minute}}</view>
     </view>
   </view>

@@ -14,7 +14,8 @@ Page({
     startnull: 1,
     endnull: 1,
     startobj: {},
-    endobj: {}
+    endobj: {},
+    signText: '上班签到'
   },
 
   /**
@@ -106,8 +107,11 @@ Page({
         if (res.data.resCode == "0000") {
           $this.setData({wkpInfo: res.data.data.workplaceArray[0]})
           if (res.data.data.workplaceArray[0].list[0]) {
-            $this.setData({startnull: 0, startobj: {time: res.data.data.workplaceArray[0].list[0].time, addr: res.data.data.workplaceArray[0].list[0].address}})
-          }
+            $this.setData({startnull: 0, startobj: {time: res.data.data.workplaceArray[0].list[0].time, addr: res.data.data.workplaceArray[0].list[0].address}            })
+            if (res.data.data.workplaceArray[0].list[0].Type == 1 || $this.data.times.hour >= 12) {
+                $this.setData({'signText': '下班签到'})
+            }
+          } 
           if (res.data.data.workplaceArray[0].list[1]) {
             $this.setData({endnull: 0, endobj: {time: res.data.data.workplaceArray[0].list[1].time, addr: res.data.data.workplaceArray[0].list[1].address}})
           }
@@ -129,8 +133,7 @@ Page({
       header: { "Content-Type": "application/x-www-form-urlencoded" },
       data: {'token': app.globalData.token},
       success:function(res) {
-        console.log(res)
-        if(res.data.data.resCode == '0000') {
+        if(res.data.resCode == '0000') {
           that.onLoad()
         }
       }
