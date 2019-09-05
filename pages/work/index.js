@@ -118,7 +118,19 @@ Page({
         } else {
           wx.showModal({
             title: '提示',
-            content: res.data.resMsg
+            content: res.data.resMsg,
+            success: param => {
+              if (param.confirm) {
+                wx.clearStorage({
+                  success: function() {
+                    app.globalData.token = '';
+                    wx.navigateTo({
+                      url: '../index/index',
+                    })
+                  }
+                })
+              }
+            }
           })
         }
       }
