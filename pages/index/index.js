@@ -80,7 +80,7 @@ Page({
             key: 'token',
             data: res.data.data.token,
             success: function() {
-              wx.navigateTo({
+              wx.reLaunch({
                 url: '../work/index',
               })
             }

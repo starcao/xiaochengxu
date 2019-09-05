@@ -45,7 +45,6 @@ App({
     })
   },
   globalData: {
-    userInfo: null,
-    token: ''
+    userInfo: null
   }
 })
