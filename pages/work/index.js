@@ -116,21 +116,29 @@ Page({
             $this.setData({endnull: 0, endobj: {time: res.data.data.workplaceArray[0].list[1].time, addr: res.data.data.workplaceArray[0].list[1].address}})
           }
         } else {
-          wx.showModal({
-            title: '提示',
-            content: res.data.resMsg,
-            showCancel: false,
-            success: param => {
-              wx.clearStorage({
-                success: function() {
-                  app.globalData.token = '';
-                  wx.reLaunch({
-                    url: '../index/index',
-                  })
-                }
-              })
-            }
-          })
+          if(res.data.resCode == '1101') {
+            wx.showModal({
+              title: '提示',
+              content: res.data.resMsg,
+              showCancel: false,
+              success: param => {
+                wx.clearStorage({
+                  success: function() {
+                    app.globalData.token = '';
+                    wx.reLaunch({
+                      url: '../index/index',
+                    })
+                  }
+                })
+              }
+            })
+          } else {
+            wx.showModal({
+              title: '提示',
+              content: res.data.resMsg,
+              showCancel: false
+            })
+          }
         }
       }
     })
@@ -145,6 +153,10 @@ Page({
       data: {'token': app.globalData.token},
       success:function(res) {
         if(res.data.resCode == '0000') {
+          wx.showToast({
+            title:'签到成功',
+            duration: 2000
+          })
           that.onLoad()
         }
       }
