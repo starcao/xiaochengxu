@@ -124,7 +124,7 @@ Page({
                 wx.clearStorage({
                   success: function() {
                     app.globalData.token = '';
-                    wx.navigateTo({
+                    wx.reLaunch({
                       url: '../index/index',
                     })
                   }
